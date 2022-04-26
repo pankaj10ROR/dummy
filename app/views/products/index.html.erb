@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row">
+    <div class="col align-self-start">
+      <h3>welcome to the E-commerce Website</h3>
+    </div>
+    <div class="col align-self-end">
+     <%= search_form_for @q do |f| %>
+     <%= f.label :product_name_cont, "Product Name" %>
+     <%= f.search_field :product_name_cont %>
+     <%= f.submit %>
+   </div>
+ </div>
+</div>
+
+<% end %>
+
+<div class="container-fluid">
+  <div class="row">
+    <% @products.each do |product| %>
+    <% if product.approved == true %>
+    <div class="col-3">
+      <div class="card">
+        <%= image_tag(product.avatar.url,:size => "253x253", alt: 'Image') if product.avatar? %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <b>Product:</b><%= product.product_name %>
+          </h5>
+          <h3 class="card-title">
+            <b>Name:</b><%= product.company_name %>
+          </h3>
+          <p class="card-text">
+            <b>Description:</b><%= product.description %>
+          </p>
+          <p class="card-text">
+            <b>Price:</b><%= product.price %>
+          </p>
+          <% if customer_signed_in? %>
+          <span><%= link_to "Add to cart", line_items_path(:product_id => product.id)%>
+          </span>
+          <% else %>
+          <span><%= link_to "Add to cart", customer_session_path%>
+          </span>
+          <% end %>
+          
+          <% if customer_signed_in? %>
+          <span><%= link_to "Add to wishlist", wish_items_path(:product_id => product.id)%>
+          </span>
+          <% else %>
+          <span><%= link_to "Add to wishlist", customer_session_path%>
+          </span>
+          <% end %>
+        </div>
+        <% if customer_signed_in? %>
+        <div class="card-footer text-muted">
+          <a href="/products/<%= product.id %>">
+            <%= "Product Details" %>
+          </a>
+        </div>
+        <% elsif seller_signed_in? %>
+        <div class="card-footer text-muted">
+          <a href="/products/<%= product.id %>">
+            <%= "Product Details" %>
+          </a>
+        </div>
+        <% else %>
+        <div class="card-footer text-muted">
+         <a href="/customers/sign_in">
+          <%= "Product Details" %>
+        </a>
+
+      </div>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <% end %>
+</div>
+</div>
+
+
+
+
+
+
+
+<style>
+  .row{text-align-last: end;}
+/*@media (min-width: 1200px)*/
+.container {
+  max-width: inherit;
+}
+.align-self-start {
+    -ms-flex-item-align: start!important;
+    align-self: flex-start!important;
+    text-align-last: initial;
+}
+</style>

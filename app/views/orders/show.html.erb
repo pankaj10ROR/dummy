@@ -1,0 +1,16 @@
+<h1><%= @order.name %></h1>
+
+<p><%= @order.email %></p>
+<p><%= @order.address %></p>
+<p><%= @order.mobile %></p>
+<p><%= @order.pay_methed %></p>
+<p><%= @order.email %></p>
+<ul>
+  <% @order.line_items.each do |item| %>
+  <li>Quantity: <%= item.quantity %> <br> Product Name:<%= item.product.product_name %>
+    <br> Product Image:<%= image_tag(item.product.avatar.url, alt: 'Image') if item.product.avatar? %>
+    <br> Product Price:<%= item.product.price %></li>
+  <% end %>
+  <p>Status: <%= @order.status %></p>
+  <p><%= link_to 'Order Cancel', refund_path(@order.id)%></p>
+</ul>

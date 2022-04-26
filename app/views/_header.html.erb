@@ -1,0 +1,130 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <div class="container-fluid">
+    
+    <a class="navbar-brand" href="/products">
+       <div>
+        <%= image_tag("download.png", size: "50x50")%>
+       </div>
+    </a>
+    
+    <a class="navbar-brand" href="/products">Home</a>
+   
+
+
+    <div class="collapse navbar-collapse" id="navbarNav"> 
+      <ul class="nav nav-pills nav-fill">
+        <%if customer_signed_in? %>
+        <li class="nav-item">
+        <button class="nav-link active" aria-current="page">
+          <%= link_to 'Sign Out', destroy_customer_session_path, data: {turbo_method: :get} %>
+          
+        </button>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to carts_show_path do%>
+            <button class="nav-link active" aria-current="page">My Cart
+            <span class="cart-count"><%= cart_count_over_one %></span>
+            </button>
+          <%end%>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to wishlists_show_path do%>
+            <button class="nav-link active" aria-current="page">My Wishlist
+            </button>
+          <%end%>
+        </li>
+        <% end %>
+
+        <li class="nav-item">       
+            <% if customer_signed_in? %>
+              <button class="nav-link active" aria-current="page">
+                <%= link_to 'My order', orders_index_path %>
+              </button>
+            <% end %>
+          </li>
+
+
+
+          <li class="nav-item">       
+            <% if seller_signed_in? %>
+              <button class="nav-link active" aria-current="page">
+                <%= link_to 'Add Product', new_product_path %>
+              </button>
+            <% end %>
+          </li>
+
+     
+          <li class="nav-item">       
+            <% if seller_signed_in? %>
+              <button class="nav-link active" aria-current="page">
+                <%= link_to 'Approved Product', products_list_of_product_path %>
+              </button>
+            <% end %>
+          </li>
+
+           <li class="nav-item">       
+            <% if seller_signed_in? %>
+              <button class="nav-link active" aria-current="page">
+                <%= link_to 'Unapproved Product', products_unapproved_product_path %>
+              </button>
+            <% end %>
+          </li>
+
+
+          <li class="nav-item">
+           <%if seller_signed_in? %>
+            <button class="nav-link active" aria-current="page">
+              <%= link_to 'Sign Out', destroy_seller_session_path, data: {
+              turbo_method: :get} %>
+            </button>
+            <% end %>
+          </li>
+
+          
+          <li class="nav-item">
+          <%if customer_signed_in? %> 
+           <div class="container-fluid">
+           <span class="navbar-text">Customer:
+           <%= current_customer.name%>
+            </span>
+           </div>
+         </li>
+
+         <li class="nav-item">
+
+            <%elsif seller_signed_in? %> 
+           <div class="container-fluid">
+           <span class="navbar-text">Seller:
+           <%= current_seller.name%>
+            </span>
+           </div>
+         </li>
+           <% else %>
+           <li class="nav-item">
+          <!-- Bootstrap dropdown add here -->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Account
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              
+              <a class="dropdown-item" href="/customers/sign_in">Customer Sign In</a>
+              
+              <a class="dropdown-item" href="/sellers/sign_in">Seller Sign In</a>
+            </div>
+          </div>
+          <% end %>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+<style>
+.navbar-dark .navbar-text{color: #cff1f3}
+</style>

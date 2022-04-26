@@ -1,0 +1,19 @@
+
+google:
+   google_client_id: 359516939961-4v5n4hl8ql7jnabtsqh0uh2jm2uq398g.apps.googleusercontent.com
+   google_client_secret: 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
+
+
+
+stripe:
+  development:
+    secret_key: 'sk_test_51KiuS8SAKjTvugb62qnjxxBdz2lzbvzcXDDMfHoM7VS2pCPnrCYY427fDI67ATcklzC6AxAai17orHjp3dOjk8ln00IOdCakdZ'
+    publishable_key: 'pk_test_51KiuS8SAKjTvugb6iAgPlytyBPhPH31xKGgTTwaQe8yLM0oNtSzf8YNIYcAwabkf3xrVui63ntluaQHCVdYJ1tiU00PkgmiDXr'
+
+
+# aws:
+#   access_key_id: 123
+#   secret_access_key: 345
+
+# Used as the base secret for all MessageVerifiers in Rails, including the one protecting cookies.
+secret_key_base: 1f9c9a90d7db46a9179684a8210f512736c5c51b387112fe641841bd1a6758e473ec7ae413f016d14797c6d0d96bc794bd002f9e1fec8e2a13b8170aa25b690a

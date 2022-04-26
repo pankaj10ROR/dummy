@@ -1,0 +1,31 @@
+<h1>Approved Products</h1>
+<div class="container-fluid">
+<div class="row">
+  <% @products.each do |product| %>
+  <%# if product.approved == true && seller_signed_in? %>
+<div class="col-3">
+  <div class="card">
+    <%= image_tag(product.avatar.url,:size => "253x253", alt: 'Image') if product.avatar? %>
+    <div class="card-body">
+      <h5 class="card-title">
+        Product:<%= product.product_name %>
+      </h5>
+      <h3 class="card-title">
+        Company:<%= product.company_name %>
+      </h3>
+      <p class="card-text">
+        Description:<%= product.description %>
+      </p>
+      <p class="card-text">
+        Price:<%= product.price %>
+      </p>
+    </div>
+  </div>
+</div>
+  <% end %>       
+  <%# end %>
+</div>
+</div>
+<br>
+
+

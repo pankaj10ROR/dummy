@@ -1,0 +1,11 @@
+<%= form_with model:[ @product, @product.reasons.build ]do |form| %>
+  <div>
+    # <%= form.label :question %><br>
+    <%= form.text_field :question %>
+  </div>
+   <div>
+    <%= form.label :answer %><br>
+    <%= form.text_field :answer %>
+  </div>
+    <%= form.submit %>
+<% end %>

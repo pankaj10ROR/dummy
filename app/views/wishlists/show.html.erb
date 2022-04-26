@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row">
+      <% @wishlist.wish_items.each do |wish_item| %>
+      
+    <div class="col-3">
+      <div class="card">
+        <%= image_tag(wish_item.product.avatar.url, :size => "253x253", alt: 'Image') if wish_item.product.avatar? %>
+        <div class="card-body">
+          <h5 class="card-title">
+            <b>Product:</b><%= wish_item.product.product_name %>
+          </h5>
+          <h3 class="card-title">
+            <b>Name:</b><%= wish_item.product.company_name %>
+          </h3>
+          <p class="card-text">
+            <b>Description:</b><%= wish_item.product.description %>
+          </p>
+          <p class="card-text">
+            <b>Price:</b><%= wish_item.product.price %>
+          </p>
+          <% if customer_signed_in? %>
+          <span><%= link_to "Add to cart", line_items_path(:product_id => wish_item.product.id)%>
+          </span>
+          <% else %>
+          <span><%= link_to "Add to cart", customer_session_path%>
+          </span>
+          <% end %>
+          <span>
+        <%= button_to "Remove item", wish_item_path(wish_item), method: :delete, :class => "btn btn-link" %>
+      </span>
+        </div>
+      </div>
+    </div>
+      <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+<style>
+  .row{text-align-last: end;}
+/*@media (min-width: 1200px)*/
+.container {
+  max-width: inherit;
+}
+.align-self-start {
+    -ms-flex-item-align: start!important;
+    align-self: flex-start!important;
+    text-align-last: initial;
+}
+</style>

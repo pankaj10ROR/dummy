@@ -1,0 +1,1 @@
+post '/subscription' => 'billing#subscribe', as: :subscribe
